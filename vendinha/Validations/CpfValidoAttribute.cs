@@ -1,7 +1,17 @@
-﻿namespace vendinha.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace vendinha.Validations
 {
-    public class Cpf
+    public class CpfValidoAttribute : ValidationAttribute
     {
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+        {
+            if (EValido(value as string))
+                return ValidationResult.Success;
+
+            return new ValidationResult(ErrorMessage ?? "CPF inválido.");
+        }
+
         public static string Normalizar(string? valor) =>
             new string((valor ?? string.Empty).Where(char.IsDigit).ToArray());
 

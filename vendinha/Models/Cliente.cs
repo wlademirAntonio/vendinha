@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using vendinha.Validations;
 
 namespace vendinha.Models
 {
@@ -10,12 +11,13 @@ namespace vendinha.Models
         [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres.")]
         public string Nome { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "O CPF é obrigatório.")]
         private string cpf = string.Empty;
+        [Required(ErrorMessage = "O CPF é obrigatório.")]
+        [CpfValido]
         public string Cpf
         {
             get { return cpf; }
-            set { cpf = Models.Cpf.Normalizar(value); }
+            set { cpf = CpfValidoAttribute.Normalizar(value); }
         }
 
         public DateTime DataNascimento { get; set; }
