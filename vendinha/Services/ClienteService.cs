@@ -19,35 +19,36 @@ namespace vendinha.Services
 
         public bool VerificarCpf(Cliente cliente, out List<ValidationResult> erros)
         {
+            var context = new ValidationContext(cliente);
             erros = new List<ValidationResult>();
+            var valido = Validator.TryValidateObject(cliente, context, erros, true);
             var existente = Context.Clientes.Any(e => e.Cpf == cliente.Cpf);
 
             if (existente)
             {
                 erros.Add(new ValidationResult("Já existe um cliente com este CPF."));
-                return true;
+                return false;
             }
-            return false;
+            return valido;
         }
 
         public bool ValidaPeloId(Cliente cliente, out List<ValidationResult> erros)
         {
-            //var context = new ValidationContext(id);
+            var context = new ValidationContext(cliente);
             erros = new List<ValidationResult>();
-           //var valido = Validator.TryValidateObject(id, context, erros, true);
+            var valido = Validator.TryValidateObject(cliente, context, erros, true);
             var existente = Context.Clientes.Any(e => e.Id == cliente.Id);
 
             if (!existente)
             {
                 erros.Add(new ValidationResult("Cliente não existe."));
-                return false;
             }
-            return true;
+            return valido;
         }
 
         public bool Criar(Cliente cliente, out List<ValidationResult> erros)
         {
-            if (VerificarCpf(cliente, out erros))
+            if (!VerificarCpf(cliente, out erros))
                 return false;
 
             Context.Add(cliente);

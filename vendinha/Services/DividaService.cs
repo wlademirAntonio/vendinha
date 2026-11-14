@@ -19,15 +19,16 @@ namespace vendinha.Services
 
         public bool ValidaPeloId(Divida divida, out List<ValidationResult> erros)
         {
+            var context = new ValidationContext(divida);
             erros = new List<ValidationResult>();
+            var valido = Validator.TryValidateObject(divida, context, erros, true);
             var existente = Context.Dividas.Any(e => e.Id == divida.Id);
 
             if (!existente)
             {
                 erros.Add(new ValidationResult("Divida não existe."));
-                return false;
             }
-            return true;
+            return valido;
         }
 
         public bool Criar(Divida divida, out List<ValidationResult> erros)
