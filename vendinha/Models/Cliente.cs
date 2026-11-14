@@ -20,6 +20,7 @@ namespace vendinha.Models
             set { cpf = CpfValidoAttribute.Normalizar(value); }
         }
 
+        [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
         public DateTime DataNascimento { get; set; }
 
         private string? email;
