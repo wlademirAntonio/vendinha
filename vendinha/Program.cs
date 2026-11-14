@@ -10,32 +10,38 @@ using vendinha.Services;
 //    Email = "xb14396798@outlook.com"
 //};
 
-//Console.WriteLine($"Nome: {cliente.Nome}");
-//Console.WriteLine($"CPF: {cliente.Cpf}");
-//Console.WriteLine($"E-mail: {cliente.Email}");
-//Console.WriteLine($"Idade: {cliente.Idade}");
+var divida = new Divida
+{
+    //Id = 1,
+    ClienteId = 6,
+    Valor = 100.00m,
+};
 
-var service = new ClienteService();
+var dividaService = new DividaService();
+var sucesso = dividaService.Criar(divida, out var erros);
+//var sucesso = dividaService.Pagar(divida, out var erros);
+
+//var service = new ClienteService();
 //var sucesso = service.Excluir(cliente, out var erros);
 //var sucesso = service.Atualizar(cliente, out var erros);
 //var sucesso = service.Criar(cliente, out var erros);
-var clientes = service.Listar();
+//var clientes = service.Listar();
 
-foreach (var c in clientes)
+//foreach (var c in clientes)
+//{
+//    Console.WriteLine($"Id: {c.Id}, Nome: {c.Nome}, CPF: {c.Cpf}, Idade: {c.Idade}");
+//}
+
+if (sucesso)
 {
-    Console.WriteLine($"Id: {c.Id}, Nome: {c.Nome}, CPF: {c.Cpf}, Idade: {c.Idade}");
+    Console.WriteLine("Feito!");
 }
+else
+{
+    Console.WriteLine("Falha!");
 
-//if (sucesso)
-//{
-//    Console.WriteLine("Aluno cadastrado com sucesso!");
-//}
-//else
-//{
-//    Console.WriteLine("Falha ao cadastrar o aluno");
-
-//    foreach (var erro in erros)
-//    {
-//        Console.WriteLine(erro.ErrorMessage);
-//    }
-//}
+    foreach (var erro in erros)
+    {
+        Console.WriteLine(erro.ErrorMessage);
+    }
+}
