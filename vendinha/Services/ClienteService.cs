@@ -58,7 +58,7 @@ namespace vendinha.Services
 
         public List<Cliente> Listar(int page = 1)
         {
-            int pageSize = 20;
+            int pageSize = 10;
             var skip = (page - 1) * pageSize;
 
             var resultado = Context.Clientes

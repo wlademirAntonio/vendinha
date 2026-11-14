@@ -13,16 +13,20 @@ namespace vendinha.Desktop.Screens
     public partial class Clientes : Form
     {
         private ClienteService service = new ClienteService();
+        public int page = 1;
         public Clientes()
         {
             InitializeComponent();
             ExibirDados();
         }
 
-        private void ExibirDados()
+        private int ExibirDados()
         {
-            var clientes = service.Listar();
+            var clientes = service.Listar(page);
             ExibirTabela(clientes);
+
+            var proximaPag = service.Listar(page + 1);
+            return proximaPag.Count;
         }
 
         private void ExibirTabela(List<Cliente> lista)
@@ -96,7 +100,25 @@ namespace vendinha.Desktop.Screens
                 }
             }
             else
-            MessageBox.Show("Exclusão cancelada.");
+                MessageBox.Show("Exclusão cancelada.");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ExibirDados() > 0)
+            {
+                page += 1;
+                ExibirDados();
+            }
+        }
+
+        private void anterior_Click(object sender, EventArgs e)
+        {
+            if (page > 1)
+            {
+                page -= 1;
+                ExibirDados();
+            }
         }
     }
 }

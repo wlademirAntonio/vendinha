@@ -39,6 +39,8 @@ namespace vendinha.Desktop.Screens
             primaryButton1 = new PrimaryButton();
             primaryButton2 = new PrimaryButton();
             primaryButton3 = new PrimaryButton();
+            proximo = new Button();
+            anterior = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -136,11 +138,35 @@ namespace vendinha.Desktop.Screens
             primaryButton3.UseVisualStyleBackColor = false;
             primaryButton3.Click += primaryButton3_Click;
             // 
+            // proximo
+            // 
+            proximo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            proximo.Location = new Point(138, 359);
+            proximo.Name = "proximo";
+            proximo.Size = new Size(21, 36);
+            proximo.TabIndex = 5;
+            proximo.Text = ">";
+            proximo.UseVisualStyleBackColor = true;
+            proximo.Click += button1_Click;
+            // 
+            // anterior
+            // 
+            anterior.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            anterior.Location = new Point(111, 359);
+            anterior.Name = "anterior";
+            anterior.Size = new Size(21, 36);
+            anterior.TabIndex = 6;
+            anterior.Text = "<";
+            anterior.UseVisualStyleBackColor = true;
+            anterior.Click += anterior_Click;
+            // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(anterior);
+            Controls.Add(proximo);
             Controls.Add(primaryButton3);
             Controls.Add(primaryButton2);
             Controls.Add(primaryButton1);
@@ -164,5 +190,7 @@ namespace vendinha.Desktop.Screens
         private PrimaryButton primaryButton1;
         private PrimaryButton primaryButton2;
         private PrimaryButton primaryButton3;
+        private Button proximo;
+        private Button anterior;
     }
 }
