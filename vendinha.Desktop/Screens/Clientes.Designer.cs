@@ -134,6 +134,7 @@ namespace vendinha.Desktop.Screens
             primaryButton3.TabIndex = 4;
             primaryButton3.Text = "Excluir";
             primaryButton3.UseVisualStyleBackColor = false;
+            primaryButton3.Click += primaryButton3_Click;
             // 
             // Clientes
             // 

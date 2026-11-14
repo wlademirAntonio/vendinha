@@ -69,5 +69,34 @@ namespace vendinha.Desktop.Screens
                 }
             }
         }
+
+        private void primaryButton3_Click(object sender, EventArgs e)
+        {
+            var clienteSelecionado = dataGridView1.CurrentRow.Tag as Cliente;
+
+            DialogResult resultado = MessageBox.Show(
+                "Tem certeza que deseja excluir este cliente?",
+                "Confirmar Exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+                );
+
+            if (resultado == DialogResult.Yes)
+            {
+                var sucesso = service.Excluir(clienteSelecionado, out var erros);
+
+                if (sucesso)
+                {
+                    MessageBox.Show("Cliente excluído!");
+                    ExibirDados();
+                }
+                else
+                {
+                    MessageBox.Show(erros[0].ErrorMessage);
+                }
+            }
+            else
+            MessageBox.Show("Exclusão cancelada.");
+        }
     }
 }
