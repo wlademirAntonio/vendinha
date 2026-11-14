@@ -30,12 +30,14 @@ namespace vendinha.Desktop.Screens
             dataGridView1.Rows.Clear();
             foreach (var cliente in lista)
             {
-                dataGridView1.Rows.Add(
+                int rowIndex = dataGridView1.Rows.Add(
                     cliente.Nome,
                     cliente.Cpf,
                     cliente.DataNascimento.ToString("dd/MM/yyyy"),
                     cliente.Email
                     );
+
+                dataGridView1.Rows[rowIndex].Tag = cliente;
             }
         }
 
@@ -47,6 +49,19 @@ namespace vendinha.Desktop.Screens
         private void primaryButton1_Click(object sender, EventArgs e)
         {
             using (var tela = new AdicionarCliente(service))
+            {
+                if (tela.ShowDialog() == DialogResult.OK)
+                {
+                    ExibirDados();
+                }
+            }
+        }
+
+        private void primaryButton2_Click(object sender, EventArgs e)
+        {
+            var clienteSelecionado = dataGridView1.CurrentRow.Tag as Cliente;
+
+            using (var tela = new AtualizarCliente(service, clienteSelecionado))
             {
                 if (tela.ShowDialog() == DialogResult.OK)
                 {

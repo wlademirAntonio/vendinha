@@ -46,6 +46,7 @@ namespace vendinha.Desktop.Screens
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nome, Cpf, DataNascimento, Email });
             dataGridView1.Location = new Point(107, 130);
@@ -54,7 +55,6 @@ namespace vendinha.Desktop.Screens
             dataGridView1.RowTemplate.Height = 36;
             dataGridView1.Size = new Size(592, 223);
             dataGridView1.TabIndex = 0;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Nome
@@ -119,6 +119,7 @@ namespace vendinha.Desktop.Screens
             primaryButton2.TabIndex = 3;
             primaryButton2.Text = "Editar";
             primaryButton2.UseVisualStyleBackColor = false;
+            primaryButton2.Click += primaryButton2_Click;
             // 
             // primaryButton3
             // 

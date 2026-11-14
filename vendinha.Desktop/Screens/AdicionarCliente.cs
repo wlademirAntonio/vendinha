@@ -22,6 +22,7 @@ namespace vendinha.Desktop.Screens
                 Email = txtEmail.Text
             };
 
+           
             var sucesso = service.Criar(cliente, out var erros);
 
             if (sucesso)
@@ -34,6 +35,7 @@ namespace vendinha.Desktop.Screens
             {
                 MessageBox.Show(erros[0].ErrorMessage);
             }
+            
         }
     }
 }
