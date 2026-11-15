@@ -31,12 +31,6 @@ namespace vendinha.Desktop.Screens
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            Nome = new DataGridViewTextBoxColumn();
-            Idade = new DataGridViewTextBoxColumn();
-            Cpf = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            QtdDividas = new DataGridViewTextBoxColumn();
-            ValorTotal = new DataGridViewTextBoxColumn();
             label1 = new LabelTitulo();
             primaryButton1 = new PrimaryButton();
             primaryButton2 = new PrimaryButton();
@@ -45,6 +39,11 @@ namespace vendinha.Desktop.Screens
             anterior = new Button();
             pesquisa = new TextBox();
             label2 = new Label();
+            Nome = new DataGridViewTextBoxColumn();
+            Idade = new DataGridViewTextBoxColumn();
+            Cpf = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            ValorTotal = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -54,7 +53,7 @@ namespace vendinha.Desktop.Screens
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nome, Idade, Cpf, Email, QtdDividas, ValorTotal });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nome, Idade, Cpf, Email, ValorTotal });
             dataGridView1.Location = new Point(107, 130);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -62,42 +61,6 @@ namespace vendinha.Desktop.Screens
             dataGridView1.Size = new Size(592, 223);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
-            // 
-            // Nome
-            // 
-            Nome.HeaderText = "Nome";
-            Nome.Name = "Nome";
-            Nome.ReadOnly = true;
-            // 
-            // Idade
-            // 
-            Idade.HeaderText = "Idade";
-            Idade.Name = "Idade";
-            Idade.ReadOnly = true;
-            // 
-            // Cpf
-            // 
-            Cpf.HeaderText = "CPF";
-            Cpf.Name = "Cpf";
-            Cpf.ReadOnly = true;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            // 
-            // QtdDividas
-            // 
-            QtdDividas.HeaderText = "Quantidade de Dividas";
-            QtdDividas.Name = "QtdDividas";
-            QtdDividas.ReadOnly = true;
-            // 
-            // ValorTotal
-            // 
-            ValorTotal.HeaderText = "Valor Total";
-            ValorTotal.Name = "ValorTotal";
-            ValorTotal.ReadOnly = true;
             // 
             // label1
             // 
@@ -194,6 +157,36 @@ namespace vendinha.Desktop.Screens
             label2.TabIndex = 8;
             label2.Text = "Dê um click duplo no cliente para acessar suas dividas.";
             // 
+            // Nome
+            // 
+            Nome.HeaderText = "Nome";
+            Nome.Name = "Nome";
+            Nome.ReadOnly = true;
+            // 
+            // Idade
+            // 
+            Idade.HeaderText = "Idade";
+            Idade.Name = "Idade";
+            Idade.ReadOnly = true;
+            // 
+            // Cpf
+            // 
+            Cpf.HeaderText = "CPF";
+            Cpf.Name = "Cpf";
+            Cpf.ReadOnly = true;
+            // 
+            // Email
+            // 
+            Email.HeaderText = "Email";
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            // 
+            // ValorTotal
+            // 
+            ValorTotal.HeaderText = "Devendo (R$)";
+            ValorTotal.Name = "ValorTotal";
+            ValorTotal.ReadOnly = true;
+            // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -225,12 +218,11 @@ namespace vendinha.Desktop.Screens
         private Button proximo;
         private Button anterior;
         private TextBox pesquisa;
+        private Label label2;
         private DataGridViewTextBoxColumn Nome;
         private DataGridViewTextBoxColumn Idade;
         private DataGridViewTextBoxColumn Cpf;
         private DataGridViewTextBoxColumn Email;
-        private DataGridViewTextBoxColumn QtdDividas;
         private DataGridViewTextBoxColumn ValorTotal;
-        private Label label2;
     }
 }

@@ -69,11 +69,9 @@ namespace vendinha.Services
                     Cpf = cliente.Cpf,
                     DataNascimento = cliente.DataNascimento,
                     Email = cliente.Email,
-                    QtdDividas = cliente.Dividas.Count(d => d.ClienteId == cliente.Id && !d.Pago),
                     TotalDividas = cliente.Dividas.Where(d => d.ClienteId == cliente.Id && !d.Pago).Sum(d => d.Valor)
                 })
-                .OrderByDescending(c => c.QtdDividas)
-                .ThenByDescending(c => c.TotalDividas)
+                .OrderByDescending(c => c.TotalDividas)
                 .ThenBy(c => c.Nome)
                 .Skip(skip)
                 .Take(pageSize)
@@ -103,6 +101,9 @@ namespace vendinha.Services
                 return false;
 
             var c = Context.Clientes.Find(cliente.Id);
+
+            var dividas = Context.Dividas.Where(d => d.ClienteId == c.Id).ToList();
+            Context.Dividas.RemoveRange(dividas);
 
             Context.Clientes.Remove(c);
             Context.SaveChanges();

@@ -39,7 +39,6 @@ namespace vendinha.Desktop.Screens
                     cliente.Idade,
                     cliente.Cpf,
                     cliente.Email ?? "",
-                    cliente.QtdDividas,
                     cliente.TotalDividas
                     );
 
@@ -51,8 +50,11 @@ namespace vendinha.Desktop.Screens
         {
             var clienteSelecionado = dataGridView1.CurrentRow?.Tag as Cliente;
 
-            var tela = new Dividas(clienteSelecionado);
-            tela.ShowDialog();
+            using (var tela = new Dividas(clienteSelecionado))
+            {
+                tela.ShowDialog();
+                ExibirDados();
+            }
         }
 
         private void primaryButton1_Click(object sender, EventArgs e)

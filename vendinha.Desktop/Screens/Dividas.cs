@@ -46,5 +46,45 @@ namespace vendinha.Desktop.Screens
                 dataGridView1.Rows[rowIndex].Tag = divida;
             }
         }
+
+        private void primaryButton1_Click(object sender, EventArgs e)
+        {
+            using (var tela = new AdicionarDivida(service, cliente))
+            {
+                if (tela.ShowDialog() == DialogResult.OK)
+                {
+                    ExibirDados();
+                }
+            }
+        }
+
+        private void primaryButton2_Click(object sender, EventArgs e)
+        {
+            var dividaSelecionada = dataGridView1.CurrentRow?.Tag as Divida;
+
+            DialogResult resultado = MessageBox.Show(
+                "Tem certeza que deseja marcar essa divida como paga?",
+                "Confirmar Pagamento",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+                );
+
+            if (resultado == DialogResult.Yes)
+            {
+                var sucesso = service.Pagar(dividaSelecionada, out var erros);
+
+                if (sucesso)
+                {
+                    MessageBox.Show("Divida paga!");
+                    ExibirDados();
+                }
+                else
+                {
+                    MessageBox.Show(erros[0].ErrorMessage);
+                }
+            }
+            else
+                MessageBox.Show("Pagamento cancelado.");
+        }
     }
 }

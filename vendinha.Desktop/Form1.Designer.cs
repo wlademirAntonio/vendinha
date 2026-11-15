@@ -39,11 +39,11 @@ namespace vendinha.Desktop
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(280, 218);
+            button1.Location = new Point(283, 244);
             button1.Name = "button1";
             button1.Size = new Size(220, 60);
             button1.TabIndex = 0;
-            button1.Text = "Gerenciar Clientes";
+            button1.Text = "Acessar Sistema";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 

@@ -77,6 +77,8 @@ namespace vendinha.Services
             var resultado = Context.Dividas
                 .Where(d => d.ClienteId == clienteId)
                 .OrderByDescending(d => d.DataCriacao)
+                .Skip(skip)
+                .Take(pageSize)
                 .ToList();
 
             return resultado;
