@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace vendinha.Models
 {
@@ -11,6 +13,10 @@ namespace vendinha.Models
         public int ClienteId { get; set; }
         
         [Required]
+        [Range(typeof(decimal), "0.01", "9999.99",
+            ParseLimitsInInvariantCulture = true,
+            ConvertValueInInvariantCulture = true,
+            ErrorMessage = "O valor deve estar entre 0,01 e 9.999,99.")]
         public decimal Valor { get; set; }
 
         public bool Pago { get; set; }

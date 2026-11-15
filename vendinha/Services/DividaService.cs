@@ -49,6 +49,13 @@ namespace vendinha.Services
                 return false;
             }
 
+            var context = new ValidationContext(divida);
+            var valido = Validator.TryValidateObject(divida, context, erros, true);
+            if (!valido)
+            {
+                return false;
+            }
+
             Context.Add(divida);
             Context.SaveChanges();
             return true;
@@ -69,16 +76,12 @@ namespace vendinha.Services
             return true;
         }
 
-        public List<Divida> Listar(int page = 1, int clienteId = 1)
+        public List<Divida> Listar(int clienteId = 1)
         {
-            int pageSize = 10;
-            var skip = (page - 1) * pageSize;
-
             var resultado = Context.Dividas
                 .Where(d => d.ClienteId == clienteId)
-                .OrderByDescending(d => d.DataCriacao)
-                .Skip(skip)
-                .Take(pageSize)
+                .OrderBy(d => d.Pago)
+                .ThenByDescending(d => d.DataCriacao)
                 .ToList();
 
             return resultado;

@@ -18,16 +18,16 @@ namespace vendinha.Desktop.Screens
         public Dividas(Cliente cliente)
         {
             this.cliente = cliente;
-            InitializeComponent();
+            InitializeComponent(cliente);
             ExibirDados();
         }
 
         private int ExibirDados()
         {
-            var dividas = service.Listar(clienteId: cliente.Id);
+            var dividas = service.Listar(cliente.Id);
             ExibirTabela(dividas);
 
-            var proximaPag = service.Listar(clienteId: cliente.Id);
+            var proximaPag = service.Listar(cliente.Id);
             return proximaPag.Count;
         }
 
@@ -47,14 +47,42 @@ namespace vendinha.Desktop.Screens
             }
         }
 
-        private void primaryButton1_Click(object sender, EventArgs e)
+        private void primaryButton1_Click(object sender, object e)
         {
-            using (var tela = new AdicionarDivida(service, cliente))
+
+            if (decimal.TryParse(inputNovaDivida.Text, out decimal valor))
             {
-                if (tela.ShowDialog() == DialogResult.OK)
+                var divida = new Divida
                 {
-                    ExibirDados();
+                    ClienteId = cliente.Id,
+                    Valor = valor
+                };
+
+                DialogResult resultado = MessageBox.Show(
+                    "Deseja pendurar uma nova divida para este cliente?",
+                    cliente.Nome,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                    );
+
+                if (resultado == DialogResult.Yes)
+                {
+                    var sucesso = service.Criar(divida, out var erros);
+
+                    if (sucesso)
+                    {
+                        MessageBox.Show("Divida pendurada!");
+                        ExibirDados();
+                    }
+                    else
+                        MessageBox.Show(erros[0].ErrorMessage);
                 }
+                else
+                    MessageBox.Show("Divida não adicionada.");
+            }
+            else
+            {
+                MessageBox.Show("Valor inválido!");
             }
         }
 
@@ -79,9 +107,7 @@ namespace vendinha.Desktop.Screens
                     ExibirDados();
                 }
                 else
-                {
                     MessageBox.Show(erros[0].ErrorMessage);
-                }
             }
             else
                 MessageBox.Show("Pagamento cancelado.");
