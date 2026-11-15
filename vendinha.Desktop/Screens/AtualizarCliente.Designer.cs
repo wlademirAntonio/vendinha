@@ -136,7 +136,7 @@ namespace vendinha.Desktop.Screens
             primaryButton1.Name = "primaryButton1";
             primaryButton1.Size = new Size(220, 60);
             primaryButton1.TabIndex = 10;
-            primaryButton1.Text = "Adicionar";
+            primaryButton1.Text = "Atualizar";
             primaryButton1.UseVisualStyleBackColor = false;
             primaryButton1.Click += primaryButton1_Click;
             // 
