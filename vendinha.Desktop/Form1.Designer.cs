@@ -31,7 +31,6 @@ namespace vendinha.Desktop
         private void InitializeComponent()
         {
             button1 = new PrimaryButton();
-            primaryButton1 = new PrimaryButton();
             SuspendLayout();
             // 
             // button1
@@ -48,26 +47,11 @@ namespace vendinha.Desktop
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // primaryButton1
-            // 
-            primaryButton1.BackColor = Color.Orange;
-            primaryButton1.FlatStyle = FlatStyle.Flat;
-            primaryButton1.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            primaryButton1.ForeColor = Color.White;
-            primaryButton1.Location = new Point(280, 295);
-            primaryButton1.Name = "primaryButton1";
-            primaryButton1.Size = new Size(220, 60);
-            primaryButton1.TabIndex = 1;
-            primaryButton1.Text = "Gerenciar Dividas";
-            primaryButton1.UseVisualStyleBackColor = true;
-            primaryButton1.Click += primaryButton1_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(primaryButton1);
             Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
@@ -77,6 +61,5 @@ namespace vendinha.Desktop
         #endregion
 
         private PrimaryButton button1;
-        private PrimaryButton primaryButton1;
     }
 }

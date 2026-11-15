@@ -32,6 +32,12 @@ namespace vendinha.Models
             set { email = string.IsNullOrWhiteSpace(value) ? null : value.Trim().ToLower(); }
         }
 
+        public int QtdDividas { get; set; } = 0;
+
+        public decimal TotalDividas { get; set; } = 0;
+
+        public List<Divida> Dividas { get; set; } = new();
+
         public int Idade
         {
             get

@@ -41,6 +41,11 @@ namespace vendinha.Context
             entityDivida.Property(c => c.DataCriacao).HasColumnName("data_criacao").HasColumnType("date");
             entityDivida.Property(c => c.DataPagamento).HasColumnName("data_pagamento").HasColumnType("date");
             entityDivida.HasKey(c => c.Id);
+            entityDivida
+                .HasOne(c => c.Cliente)
+                .WithMany(c => c.Dividas)
+                .HasForeignKey(c => c.ClienteId)
+                .HasConstraintName("fk_cliente");
 
             base.OnModelCreating(modelBuilder);
         }

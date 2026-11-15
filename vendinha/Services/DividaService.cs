@@ -45,7 +45,7 @@ namespace vendinha.Services
 
             if (dividaAberta)
             {
-                erros.Add(new ValidationResult("Cliente já possui uma dívida aberta."));
+                erros.Add(new ValidationResult("Cliente possui uma dívida aberta."));
                 return false;
             }
 

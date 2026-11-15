@@ -31,16 +31,19 @@ namespace vendinha.Desktop.Screens
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            Nome = new DataGridViewTextBoxColumn();
-            Cpf = new DataGridViewTextBoxColumn();
-            DataNascimento = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
             label1 = new LabelTitulo();
             primaryButton1 = new PrimaryButton();
             primaryButton2 = new PrimaryButton();
             primaryButton3 = new PrimaryButton();
             proximo = new Button();
             anterior = new Button();
+            pesquisa = new TextBox();
+            Nome = new DataGridViewTextBoxColumn();
+            Idade = new DataGridViewTextBoxColumn();
+            Cpf = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            QtdDividas = new DataGridViewTextBoxColumn();
+            ValorTotal = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -50,7 +53,7 @@ namespace vendinha.Desktop.Screens
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nome, Cpf, DataNascimento, Email });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nome, Idade, Cpf, Email, QtdDividas, ValorTotal });
             dataGridView1.Location = new Point(107, 130);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -58,30 +61,6 @@ namespace vendinha.Desktop.Screens
             dataGridView1.Size = new Size(592, 223);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // Nome
-            // 
-            Nome.HeaderText = "Nome";
-            Nome.Name = "Nome";
-            Nome.ReadOnly = true;
-            // 
-            // Cpf
-            // 
-            Cpf.HeaderText = "CPF";
-            Cpf.Name = "Cpf";
-            Cpf.ReadOnly = true;
-            // 
-            // DataNascimento
-            // 
-            DataNascimento.HeaderText = "Data de Nascimento";
-            DataNascimento.Name = "DataNascimento";
-            DataNascimento.ReadOnly = true;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.Name = "Email";
-            Email.ReadOnly = true;
             // 
             // label1
             // 
@@ -160,11 +139,56 @@ namespace vendinha.Desktop.Screens
             anterior.UseVisualStyleBackColor = true;
             anterior.Click += anterior_Click;
             // 
+            // pesquisa
+            // 
+            pesquisa.Location = new Point(107, 101);
+            pesquisa.Name = "pesquisa";
+            pesquisa.Size = new Size(355, 23);
+            pesquisa.TabIndex = 7;
+            pesquisa.TextChanged += pesquisa_TextChanged;
+            // 
+            // Nome
+            // 
+            Nome.HeaderText = "Nome";
+            Nome.Name = "Nome";
+            Nome.ReadOnly = true;
+            // 
+            // Idade
+            // 
+            Idade.HeaderText = "Idade";
+            Idade.Name = "Idade";
+            Idade.ReadOnly = true;
+            // 
+            // Cpf
+            // 
+            Cpf.HeaderText = "CPF";
+            Cpf.Name = "Cpf";
+            Cpf.ReadOnly = true;
+            // 
+            // Email
+            // 
+            Email.HeaderText = "Email";
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            // 
+            // QtdDividas
+            // 
+            QtdDividas.HeaderText = "Quantidade de Dividas";
+            QtdDividas.Name = "QtdDividas";
+            QtdDividas.ReadOnly = true;
+            // 
+            // ValorTotal
+            // 
+            ValorTotal.HeaderText = "Valor Total";
+            ValorTotal.Name = "ValorTotal";
+            ValorTotal.ReadOnly = true;
+            // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(pesquisa);
             Controls.Add(anterior);
             Controls.Add(proximo);
             Controls.Add(primaryButton3);
@@ -182,15 +206,18 @@ namespace vendinha.Desktop.Screens
         #endregion
 
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Nome;
-        private DataGridViewTextBoxColumn Cpf;
-        private DataGridViewTextBoxColumn DataNascimento;
-        private DataGridViewTextBoxColumn Email;
         private LabelTitulo label1;
         private PrimaryButton primaryButton1;
         private PrimaryButton primaryButton2;
         private PrimaryButton primaryButton3;
         private Button proximo;
         private Button anterior;
+        private TextBox pesquisa;
+        private DataGridViewTextBoxColumn Nome;
+        private DataGridViewTextBoxColumn Idade;
+        private DataGridViewTextBoxColumn Cpf;
+        private DataGridViewTextBoxColumn Email;
+        private DataGridViewTextBoxColumn QtdDividas;
+        private DataGridViewTextBoxColumn ValorTotal;
     }
 }

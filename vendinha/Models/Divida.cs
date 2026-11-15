@@ -17,5 +17,7 @@ namespace vendinha.Models
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 
         public DateTime? DataPagamento { get; set; }
+
+        public Cliente? Cliente { get; set; }
     }
 }

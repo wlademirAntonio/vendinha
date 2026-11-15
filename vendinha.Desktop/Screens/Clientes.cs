@@ -22,10 +22,10 @@ namespace vendinha.Desktop.Screens
 
         private int ExibirDados()
         {
-            var clientes = service.Listar(page);
+            var clientes = service.Listar(pesquisa.Text, page);
             ExibirTabela(clientes);
 
-            var proximaPag = service.Listar(page + 1);
+            var proximaPag = service.Listar(pesquisa.Text, page + 1);
             return proximaPag.Count;
         }
 
@@ -36,9 +36,11 @@ namespace vendinha.Desktop.Screens
             {
                 int rowIndex = dataGridView1.Rows.Add(
                     cliente.Nome,
+                    cliente.Idade,
                     cliente.Cpf,
-                    cliente.DataNascimento.ToString("dd/MM/yyyy"),
-                    cliente.Email
+                    cliente.Email,
+                    cliente.QtdDividas,
+                    cliente.TotalDividas
                     );
 
                 dataGridView1.Rows[rowIndex].Tag = cliente;
@@ -119,6 +121,12 @@ namespace vendinha.Desktop.Screens
                 page -= 1;
                 ExibirDados();
             }
+        }
+
+        private void pesquisa_TextChanged(object sender, EventArgs e)
+        {
+            page = 1;
+            ExibirDados();
         }
     }
 }

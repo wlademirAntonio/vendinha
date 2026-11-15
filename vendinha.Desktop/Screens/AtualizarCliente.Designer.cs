@@ -58,7 +58,7 @@ namespace vendinha.Desktop.Screens
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(311, 23);
             txtNome.TabIndex = 1;
-            //txtNome.Text = cliente.Nome;
+            txtNome.Text = cliente.Nome;
             // 
             // label1
             // 
@@ -86,7 +86,7 @@ namespace vendinha.Desktop.Screens
             txtCpf.Name = "txtCpf";
             txtCpf.Size = new Size(159, 23);
             txtCpf.TabIndex = 3;
-            //txtCpf.Text = cliente.Cpf;
+            txtCpf.Text = cliente.Cpf;
             // 
             // label3
             // 
@@ -114,7 +114,7 @@ namespace vendinha.Desktop.Screens
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(311, 23);
             txtEmail.TabIndex = 7;
-            //txtEmail.Text = cliente.Email;
+            txtEmail.Text = cliente.Email;
             // 
             // txtDataNascimento
             // 
@@ -123,7 +123,7 @@ namespace vendinha.Desktop.Screens
             txtDataNascimento.Name = "txtDataNascimento";
             txtDataNascimento.Size = new Size(146, 23);
             txtDataNascimento.TabIndex = 9;
-            //txtDataNascimento.Value = cliente.DataNascimento.ToLocalTime();
+            txtDataNascimento.Value = cliente.DataNascimento.ToLocalTime();
             // 
             // primaryButton1
             // 

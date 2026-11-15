@@ -56,13 +56,24 @@ namespace vendinha.Services
             return true;
         }
 
-        public List<Cliente> Listar(int page = 1)
+        public List<Cliente> Listar(string pesquisa, int page = 1)
         {
             int pageSize = 10;
             var skip = (page - 1) * pageSize;
 
             var resultado = Context.Clientes
-                .OrderBy(c => c.Nome)
+                .Where((cliente) => cliente.Nome.Contains(pesquisa))
+                .Select((cliente) => new Cliente{
+                    Id = cliente.Id,
+                    Nome = cliente.Nome,
+                    Cpf = cliente.Cpf,
+                    DataNascimento = cliente.DataNascimento,
+                    Email = cliente.Email,
+                    QtdDividas = cliente.Dividas.Count(d => d.ClienteId == cliente.Id && !d.Pago),
+                    TotalDividas = cliente.Dividas.Where(d => d.ClienteId == cliente.Id && !d.Pago).Sum(d => d.Valor)
+                })
+                .OrderByDescending(c => c.TotalDividas)
+                .ThenBy(c => c.Nome)
                 .Skip(skip)
                 .Take(pageSize)
                 .ToList();
