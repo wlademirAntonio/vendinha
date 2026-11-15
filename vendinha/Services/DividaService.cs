@@ -22,9 +22,9 @@ namespace vendinha.Services
             var context = new ValidationContext(divida);
             erros = new List<ValidationResult>();
             var valido = Validator.TryValidateObject(divida, context, erros, true);
-            var existente = Context.Dividas.Any(e => e.Id == divida.Id);
+            var existente = Context.Dividas.Find(divida.Id);
 
-            if (!existente)
+            if (existente == null)
             {
                 erros.Add(new ValidationResult("Divida não existe."));
             }
@@ -62,11 +62,24 @@ namespace vendinha.Services
                 return false;
             }
 
-            var dividaExistente = Context.Dividas.Find(divida.Id);
-            dividaExistente.Pago = true;
-            dividaExistente.DataPagamento = DateTime.Now;
+            var dividaExistente = Context.Dividas?.Find(divida.Id);
+            dividaExistente?.Pago = true;
+            dividaExistente?.DataPagamento = DateTime.Now;
             Context.SaveChanges();
             return true;
-        }   
+        }
+
+        public List<Divida> Listar(int page = 1, int clienteId = 1)
+        {
+            int pageSize = 10;
+            var skip = (page - 1) * pageSize;
+
+            var resultado = Context.Dividas
+                .Where(d => d.ClienteId == clienteId)
+                .OrderByDescending(d => d.DataCriacao)
+                .ToList();
+
+            return resultado;
+        }
     }
 }

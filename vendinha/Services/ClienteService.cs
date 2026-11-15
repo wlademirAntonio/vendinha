@@ -37,9 +37,9 @@ namespace vendinha.Services
             var context = new ValidationContext(cliente);
             erros = new List<ValidationResult>();
             var valido = Validator.TryValidateObject(cliente, context, erros, true);
-            var existente = Context.Clientes.Any(e => e.Id == cliente.Id);
+            var existente = Context.Clientes.Find(cliente.Id);
 
-            if (!existente)
+            if (existente == null)
             {
                 erros.Add(new ValidationResult("Cliente não existe."));
             }
@@ -72,7 +72,8 @@ namespace vendinha.Services
                     QtdDividas = cliente.Dividas.Count(d => d.ClienteId == cliente.Id && !d.Pago),
                     TotalDividas = cliente.Dividas.Where(d => d.ClienteId == cliente.Id && !d.Pago).Sum(d => d.Valor)
                 })
-                .OrderByDescending(c => c.TotalDividas)
+                .OrderByDescending(c => c.QtdDividas)
+                .ThenByDescending(c => c.TotalDividas)
                 .ThenBy(c => c.Nome)
                 .Skip(skip)
                 .Take(pageSize)
@@ -101,7 +102,9 @@ namespace vendinha.Services
             if (!ValidaPeloId(cliente, out erros))
                 return false;
 
-            Context.Clientes.Remove(cliente);
+            var c = Context.Clientes.Find(cliente.Id);
+
+            Context.Clientes.Remove(c);
             Context.SaveChanges();
             return true;
         }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using vendinha.Validations;
 
 namespace vendinha.Models
@@ -31,11 +32,11 @@ namespace vendinha.Models
             get { return email; }
             set { email = string.IsNullOrWhiteSpace(value) ? null : value.Trim().ToLower(); }
         }
-
+        [NotMapped]
         public int QtdDividas { get; set; } = 0;
-
+        [NotMapped]
         public decimal TotalDividas { get; set; } = 0;
-
+        [NotMapped]
         public List<Divida> Dividas { get; set; } = new();
 
         public int Idade

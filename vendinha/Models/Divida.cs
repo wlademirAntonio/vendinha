@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace vendinha.Models
 {
@@ -17,7 +18,7 @@ namespace vendinha.Models
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 
         public DateTime? DataPagamento { get; set; }
-
+        [NotMapped]
         public Cliente? Cliente { get; set; }
     }
 }

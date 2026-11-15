@@ -14,11 +14,5 @@ namespace vendinha.Desktop
             var tela = new Clientes();
             tela.ShowDialog();
         }
-
-        private void primaryButton1_Click(object sender, EventArgs e)
-        {
-            var tela = new Dividas();
-            tela.ShowDialog();
-        }
     }
 }

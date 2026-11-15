@@ -38,7 +38,7 @@ namespace vendinha.Desktop.Screens
                     cliente.Nome,
                     cliente.Idade,
                     cliente.Cpf,
-                    cliente.Email,
+                    cliente.Email ?? "",
                     cliente.QtdDividas,
                     cliente.TotalDividas
                     );
@@ -47,9 +47,12 @@ namespace vendinha.Desktop.Screens
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            var clienteSelecionado = dataGridView1.CurrentRow?.Tag as Cliente;
 
+            var tela = new Dividas(clienteSelecionado);
+            tela.ShowDialog();
         }
 
         private void primaryButton1_Click(object sender, EventArgs e)
@@ -65,7 +68,7 @@ namespace vendinha.Desktop.Screens
 
         private void primaryButton2_Click(object sender, EventArgs e)
         {
-            var clienteSelecionado = dataGridView1.CurrentRow.Tag as Cliente;
+            var clienteSelecionado = dataGridView1.CurrentRow?.Tag as Cliente;
 
             using (var tela = new AtualizarCliente(service, clienteSelecionado))
             {
@@ -78,7 +81,7 @@ namespace vendinha.Desktop.Screens
 
         private void primaryButton3_Click(object sender, EventArgs e)
         {
-            var clienteSelecionado = dataGridView1.CurrentRow.Tag as Cliente;
+            var clienteSelecionado = dataGridView1.CurrentRow?.Tag as Cliente;
 
             DialogResult resultado = MessageBox.Show(
                 "Tem certeza que deseja excluir este cliente?",
